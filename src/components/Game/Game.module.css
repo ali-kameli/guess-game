@@ -42,3 +42,34 @@
     border: none;
     border-radius: 5px;
 }
+
+.answer_parrent {
+    justify-content: center;
+    display: flex;
+    margin: 20px 0;
+}
+
+.answers {
+    border: 2px solid white;
+    background-color:rgba(241, 236, 236, 0.323);
+    border-radius: 10px;
+    padding: 10px;
+    width: fit-content;
+}
+
+.answer {
+    display: flex;
+}
+
+.answer>div {
+    background-color: rgb(128, 127, 127);
+    margin: 5px;
+    /* padding: 5px; */
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

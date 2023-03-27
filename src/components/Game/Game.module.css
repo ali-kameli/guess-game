@@ -1,0 +1,44 @@
+.sky {
+    width: 100%;
+    height: 200px;
+    clip-path: ellipse(100% 162px at 88% 20%);
+    background-color: rgb(58, 2, 111);
+}
+
+.step {
+    border-radius: 50%;
+    background-color: rgb(174, 109, 234);
+    color: white;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+
+.inputs {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.otpInput {
+    display: flex;
+}
+
+.form {
+    background-color: gray;
+    padding: 10px;
+    border-radius: 10px 10px 10px 0;
+}
+
+.form>input {
+    width: 2em;
+    padding: 6px;
+    margin: 2px;
+    border: none;
+    border-radius: 5px;
+}

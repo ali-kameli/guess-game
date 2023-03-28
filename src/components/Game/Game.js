@@ -75,6 +75,11 @@ const Game = () => {
         setFiveAccessKey([...new Set(fiveAccessKeyArr)])
     }, [])
 
+    console.log('1====>'+firstAccessKey);
+    console.log('2====>'+secAccessKey);
+    console.log('3====>'+threeAccessKey);
+    console.log('4====>'+fourAccessKey);
+    console.log('5====>'+fiveAccessKey);
     return (
         <div>
             <div className={style.sky}>
@@ -87,20 +92,53 @@ const Game = () => {
                         {
                             textArr.map((txt, index) => (
                                 <div className={style.answer} key={index}>
-                                    <div style={{ backgroundColor: firstAccessKey.includes(txt[0]) && 'green' }}>
-                                        {txt[0]}
+                                    <div style={{
+                                        backgroundColor: firstAccessKey.includes(txt[0].toUpperCase())
+                                            ? 'green' :
+                                            secAccessKey.includes(txt[0].toUpperCase()) ||
+                                                threeAccessKey.includes(txt[0].toUpperCase()) ||
+                                                fourAccessKey.includes(txt[0].toUpperCase()) ||
+                                                fiveAccessKey.includes(txt[0].toUpperCase()) ? 'yellow' : null
+                                    }}>
+                                        {txt[0].toUpperCase()}
                                     </div>
-                                    <div style={{ backgroundColor: secAccessKey.includes(txt[1]) && 'green' }}>
-                                        {txt[1]}
+                                    <div style={{
+                                        backgroundColor: secAccessKey.includes(txt[1].toUpperCase()) ? 'green' :
+                                            firstAccessKey.includes(txt[1].toUpperCase()) ||
+                                                threeAccessKey.includes(txt[1].toUpperCase()) ||
+                                                fourAccessKey.includes(txt[1].toUpperCase()) ||
+                                                fiveAccessKey.includes(txt[1].toUpperCase()) ? 'yellow' : null
+
+                                    }}>
+                                        {txt[1].toUpperCase()}
                                     </div>
-                                    <div style={{ backgroundColor: threeAccessKey.includes(txt[2]) && 'green' }}>
-                                        {txt[2]}
+                                    <div style={{
+                                        backgroundColor: threeAccessKey.includes(txt[2].toUpperCase()) ? 'green' :
+                                            firstAccessKey.includes(txt[2].toUpperCase()) ||
+                                                secAccessKey.includes(txt[2].toUpperCase()) ||
+                                                fourAccessKey.includes(txt[2].toUpperCase()) ||
+                                                fiveAccessKey.includes(txt[2].toUpperCase()) ? 'yellow' : null
+                                    }}>
+                                        {txt[2].toUpperCase()}
                                     </div>
-                                    <div style={{ backgroundColor: fourAccessKey.includes(txt[3]) && 'green' }}>
-                                        {txt[3]}
+                                    <div style={{
+                                        backgroundColor: fourAccessKey.includes(txt[3].toUpperCase()) ? 'green' :
+                                            firstAccessKey.includes(txt[3].toUpperCase()) ||
+                                                secAccessKey.includes(txt[3].toUpperCase()) ||
+                                                threeAccessKey.includes(txt[3].toUpperCase()) ||
+                                                fiveAccessKey.includes(txt[3].toUpperCase()) ? 'yellow' : null
+                                    }}>
+                                        {txt[3].toUpperCase()}
                                     </div>
-                                    <div style={{ backgroundColor: fiveAccessKey.includes(txt[4]) && 'green' }}>
-                                        {txt[4]}
+                                    <div style={{
+                                        backgroundColor: fiveAccessKey.includes(txt[4].toUpperCase()) ? 'green' :
+                                            firstAccessKey.includes(txt[4].toUpperCase()) ||
+                                                secAccessKey.includes(txt[4].toUpperCase()) ||
+                                                threeAccessKey.includes(txt[4].toUpperCase()) ||
+                                                fourAccessKey.includes(txt[4].toUpperCase()) ? 'yellow' : null
+
+                                    }}>
+                                        {txt[4].toUpperCase()}
                                     </div>
                                 </div>
                             ))
@@ -110,12 +148,12 @@ const Game = () => {
             }
             <div className={style.inputs}>
                 <from className={style.form}   >
-                    <input autoFocus={true} ref={firstTxt} onChange={handleFocus} type="text" maxLength="1" />
-                    <input onChange={handleFocus} ref={secTxt} type="text" maxLength="1" />
-                    <input onChange={handleFocus} ref={threeTxt} type="text" maxLength="1" />
-                    <input onChange={handleFocus} ref={fourTxt} type="text" maxLength="1" />
-                    <input onChange={handleFocus} ref={fiveTxt} type="text" maxLength="1" />
-                    <button type="submit" onClick={(e) => { clickHandler(e) }}>send</button>
+                    <input autoFocus={true} ref={firstTxt} onChange={handleFocus} type="text" maxLength="1" style={{ textTransform: "uppercase" }} />
+                    <input onChange={handleFocus} ref={secTxt} type="text" maxLength="1" style={{ textTransform: "uppercase" }} />
+                    <input onChange={handleFocus} ref={threeTxt} type="text" maxLength="1" style={{ textTransform: "uppercase" }} />
+                    <input onChange={handleFocus} ref={fourTxt} type="text" maxLength="1" style={{ textTransform: "uppercase" }} />
+                    <input onChange={(e) => { clickHandler(e)}} ref={fiveTxt} type="text" maxLength="1" style={{ textTransform: "uppercase" }} />
+                    {/* <button type="submit" onClick={(e) => { clickHandler(e) }}>send</button> */}
                 </from>
                 {/* <div className={style.}></div> */}
             </div>

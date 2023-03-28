@@ -7,25 +7,26 @@ const Game = () => {
     const params = useParams();
     const id = params.id;
 
-    const [textArr, setTextArr] = useState([]);
-    const [txt, setTxt] = useState('');
+    const level = useRef();
 
+    const [textArr, setTextArr] = useState([]);
+    // split robot access key's
     const [firstAccessKey, setFirstAccessKey] = useState([]);
     const [secAccessKey, setSecAccessKey] = useState([]);
     const [threeAccessKey, setThreeAccessKey] = useState([]);
     const [fourAccessKey, setFourAccessKey] = useState([]);
     const [fiveAccessKey, setFiveAccessKey] = useState([]);
-
+    // get each word from user
     const firstTxt = useRef();
     const secTxt = useRef();
     const threeTxt = useRef();
     const fourTxt = useRef();
     const fiveTxt = useRef();
-
+    // focus and jump input
     const handleFocus = (e) => {
         if (e.target.nextSibling) e.target.nextSibling.focus();
     }
-
+    // when recived to last input, send input's
     const clickHandler = (e) => {
         let inputs = {
             firstElement: firstTxt.current.value,
@@ -36,7 +37,6 @@ const Game = () => {
         }
         let txt = inputs.firstElement + inputs.secElement + inputs.threeElement + inputs.fourElement + inputs.fiveElement;
         if (txt.length === 5) {
-            setTxt(txt);
             setTextArr(oldArray => [...oldArray, txt]);
 
         } else {
@@ -48,12 +48,14 @@ const Game = () => {
         fourTxt.current.value = '';
         fiveTxt.current.value = '';
         handleFocus(e);
+    }
 
-
+    const levelHandler=()=>{
+        console.log(level.current.value);
     }
 
     useEffect(() => {
-
+        // spliting each word from robot access key's
         let firstAccessKeyArr = [];
         let secAccessKeyArr = [];
         let threeAccessKeyArr = [];
@@ -75,11 +77,6 @@ const Game = () => {
         setFiveAccessKey([...new Set(fiveAccessKeyArr)])
     }, [])
 
-    console.log('1====>'+firstAccessKey);
-    console.log('2====>'+secAccessKey);
-    console.log('3====>'+threeAccessKey);
-    console.log('4====>'+fourAccessKey);
-    console.log('5====>'+fiveAccessKey);
     return (
         <div>
             <div className={style.sky}>
@@ -146,16 +143,21 @@ const Game = () => {
                     </div>
                 </div>
             }
+            <div className={style.range}>
+            <select ref={level} onClick={levelHandler}>
+                <option>Easy</option>
+                <option>Medium</option>
+                <option>Hard</option>
+            </select>
+            </div>
             <div className={style.inputs}>
-                <from className={style.form}   >
+                <from className={style.form}>
                     <input autoFocus={true} ref={firstTxt} onChange={handleFocus} type="text" maxLength="1" style={{ textTransform: "uppercase" }} />
                     <input onChange={handleFocus} ref={secTxt} type="text" maxLength="1" style={{ textTransform: "uppercase" }} />
                     <input onChange={handleFocus} ref={threeTxt} type="text" maxLength="1" style={{ textTransform: "uppercase" }} />
                     <input onChange={handleFocus} ref={fourTxt} type="text" maxLength="1" style={{ textTransform: "uppercase" }} />
-                    <input onChange={(e) => { clickHandler(e)}} ref={fiveTxt} type="text" maxLength="1" style={{ textTransform: "uppercase" }} />
-                    {/* <button type="submit" onClick={(e) => { clickHandler(e) }}>send</button> */}
+                    <input onChange={(e) => { clickHandler(e) }} ref={fiveTxt} type="text" maxLength="1" style={{ textTransform: "uppercase" }} />
                 </from>
-                {/* <div className={style.}></div> */}
             </div>
         </div>
     )
